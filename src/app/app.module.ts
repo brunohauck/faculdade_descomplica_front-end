@@ -23,6 +23,9 @@ import { ListarComponent } from './pages/listar/listar.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { ManipulandoJsonComponent } from './pages/manipulando-json/manipulando-json.component';
+import { UserService } from './services/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import { MatSortModule } from '@angular/material/sort';
     HeaderComponent,
     CadastroComponent,
     LoginComponent,
-    ListarComponent
+    ListarComponent,
+    ManipulandoJsonComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    HttpClientModule,
     ReactiveFormsModule,
     LayoutModule,
     MatToolbarModule,
@@ -53,7 +58,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,7 +15,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="First name" formControlName="firstName">
-            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+            <mat-error *ngIf="addressForm.controls['nome'].hasError('required')">
               First name is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -23,7 +23,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Last name" formControlName="lastName">
-            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+            <mat-error *ngIf="addressForm.controls['email'].hasError('required')">
               Last name is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -33,7 +33,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <textarea matInput placeholder="Address" formControlName="address"></textarea>
-            <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
+            <mat-error *ngIf="addressForm.controls['telefone'].hasError('required')">
               Address is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -57,7 +57,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="City" formControlName="city">
-            <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+            <mat-error >
               City is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -69,7 +69,7 @@
                 {{ state.name }}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="addressForm.controls['state'].hasError('required')">
+            <mat-error >
               State is <strong>required</strong>
             </mat-error>
           </mat-form-field>
