@@ -19,6 +19,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { HeaderComponent } from './components/header/header.component';
+import { ListarComponent } from './pages/listar/listar.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -27,7 +31,8 @@ import { HeaderComponent } from './components/header/header.component';
     HomeComponent,
     HeaderComponent,
     CadastroComponent,
-    LoginComponent
+    LoginComponent,
+    ListarComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,10 @@ import { HeaderComponent } from './components/header/header.component';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

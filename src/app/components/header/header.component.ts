@@ -16,7 +16,7 @@ export class HeaderComponent {
       shareReplay()
     );
 
-  @Input() nome:string = '';
+
   constructor(private breakpointObserver: BreakpointObserver) {}
 
 }
