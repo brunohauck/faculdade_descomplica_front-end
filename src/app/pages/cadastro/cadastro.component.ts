@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { catchError, EMPTY, tap } from 'rxjs';
 import { User } from 'src/app/models/user';
@@ -9,9 +9,12 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
-export class CadastroComponent {
+export class CadastroComponent implements OnInit {
 
   user: User = new User();
+  users: User[] = [];
+  constructor(private fb: FormBuilder,
+    private service: UserService) { }
   addressForm = this.fb.group({
     'id': [this.user.id],
     'nome': [this.user.nome, Validators.required],
@@ -19,6 +22,20 @@ export class CadastroComponent {
     'email': [this.user.email, Validators.required],
 
   });
+
+  ngOnInit(): void {
+    this.service.getUsers().pipe(
+      tap((retorno: User[]) => {
+          console.log(retorno);
+        }
+      ),
+      catchError((e) => {
+        alert('Ocorreu um erro');
+        console.log(e)
+        return EMPTY
+      }
+      ));
+  }
 
   hasUnitNumber = false;
 
@@ -85,8 +102,7 @@ export class CadastroComponent {
   ];
 
 
-  constructor(private fb: FormBuilder,
-    private service: UserService) { }
+
 
   onSubmit(): void {
     alert('Thanks!');
@@ -115,21 +131,8 @@ export class CadastroComponent {
         return EMPTY
       }
       )
-    ).subscribe(
-      {
-        next: (response) => {
-          console.log('entrou no response')
-          console.log(response)
-          //this.router.navigate(['animals'])
-          window.location.href = 'http://localhost/urban-agros/croper/index.html';
-        },
-        error: (erro: any) => {
-          console.log('entrou no erro')
-          alert("Usuário ou Senha inválido(s)!");
-          console.log(erro)
-        }
-      }
     )
+
 
     // nextHandler
   }
