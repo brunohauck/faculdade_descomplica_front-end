@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AutorizacaoService } from 'src/app/services/autorizacao.service';
 
 @Component({
   selector: 'app-login',
@@ -94,9 +95,20 @@ export class LoginComponent {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private autorizacaoService:AutorizacaoService) {}
+
+  obterDescricaoLogin = () => 
+  this.autorizacaoService.obterLoginStatus() ? "Estou Autorizado" : "Nao Estou Autorizado";
+
+  loginClick() {
+    if (this.autorizacaoService.obterLoginStatus())
+      this.autorizacaoService.deslogar();
+    else
+      this.autorizacaoService.autorizar();
+  }
 
   onSubmit(): void {
+    this.loginClick();
     alert('Thanks!');
   }
 }

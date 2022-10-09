@@ -26,6 +26,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { ManipulandoJsonComponent } from './pages/manipulando-json/manipulando-json.component';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PrivadoComponent } from './pages/privado/privado.component';
+import { DetalheComponent } from './pages/detalhe/detalhe.component';
+import { ParametroComponent } from './pages/parametro/parametro.component';
+import { ListaSimplesComponent } from './pages/lista-simples/lista-simples.component';
 
 
 @NgModule({
@@ -36,7 +40,11 @@ import { HttpClientModule } from '@angular/common/http';
     CadastroComponent,
     LoginComponent,
     ListarComponent,
-    ManipulandoJsonComponent
+    ManipulandoJsonComponent,
+    PrivadoComponent,
+    DetalheComponent,
+    ParametroComponent,
+    ListaSimplesComponent
   ],
   imports: [
     BrowserModule,
