@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Student } from 'src/app/models/student';
 import studentsData from '../../students.json';    
-interface Student {  
-    id: Number;  
-    name: String;  
-    email: String;  
-    gender: String;  
-}  
+
 @Component({
   selector: 'app-manipulando-json',
   templateUrl: './manipulando-json.component.html',
@@ -14,10 +11,14 @@ interface Student {
 export class ManipulandoJsonComponent implements OnInit {
 
   students: Student[] = studentsData;  
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.students)
+  }
+  goToDetail(student: Student){
+
+    this.router.navigate(['/detalhe', student.id]);
   }
 
 }
