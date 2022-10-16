@@ -1,38 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
-import { catchError, EMPTY, tap } from 'rxjs';
+import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
-import { AutorizacaoService } from 'src/app/services/autorizacao.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-cadastro',
-  templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css']
+  selector: 'app-editar',
+  templateUrl: './editar.component.html',
+  styleUrls: ['./editar.component.css']
 })
-export class CadastroComponent {
+export class EditarComponent {
 
   user: User = new User();  
-  addressForm = this.fb.group({
-    id: this.user.id,
-    firstName: [this.user.firstName, Validators.required],
-    email: [this.user.email, [Validators.required, Validators.email]],
-    phone: [this.user.phone, Validators.required],
-    password: [this.user.password, Validators.required],
-  });
+  addressForm: any 
+  email: any;
+  constructor(private fb: FormBuilder) {
+    console.log('entrou')
+    console.log(this.user);
+    if(localStorage.getItem('user')){
+      this.user = JSON.parse(localStorage.getItem('user') || '{}');  
+    }
+    console.log(this.user);
+    this.addressForm = this.fb.group({
+      id: this.user.id,
+      firstName: [this.user.firstName, Validators.required],
+      email: [this.user.email, [Validators.required, Validators.email]],
+      phone: [this.user.phone, Validators.required],
+      password: [this.user.password, Validators.required],
+    });
+    this.email = this.addressForm.controls['email'];
 
-  hasUnitNumber = false;
-  email = this.addressForm.controls['email'];
+  }
+
+  
+  
+
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
-
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  constructor(private fb: FormBuilder, private autorizacaoService:AutorizacaoService) {}
 
 
 
@@ -52,4 +60,7 @@ export class CadastroComponent {
     localStorage.setItem('user', JSON.stringify(this.user));
 
   }
+
+
+
 }

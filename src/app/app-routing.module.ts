@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AutorizadoGuard } from './guards/autorizado.guard';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { DetalheComponent } from './pages/detalhe/detalhe.component';
+import { EditarComponent } from './pages/editar/editar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListarComponent } from './pages/listar/listar.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CadastroComponent },
+  { path: 'editar', component: EditarComponent },
   { path: 'listar', component: ListarComponent },
   { path: 'detalhe/:id', component: DetalheComponent},
   { path: 'json', component: ManipulandoJsonComponent},
