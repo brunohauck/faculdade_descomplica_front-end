@@ -43,6 +43,20 @@
           </mat-form-field>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="fill">
+            <input matInput placeholder="CPF" mask="000.000.000-00" formControlName="cpf">
+            <mat-error *ngIf="addressForm.controls['cpf'].hasError('required')">
+              CPF é  <strong>obrigatório</strong>
+            </mat-error>
+            <mat-error *ngIf="addressForm.controls['cpf'].getError('cpfNotValid')">
+              CPF não é <strong>Valido</strong>
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" [disabled]="!addressForm.valid"  type="submit">Login</button>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { catchError, EMPTY, tap } from 'rxjs';
+import { GenericValidator } from 'src/app/comum/validador';
 import { User } from 'src/app/models/user';
 import { AutorizacaoService } from 'src/app/services/autorizacao.service';
 import { UserService } from 'src/app/services/user.service';
@@ -12,12 +13,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CadastroComponent {
 
+
   user: User = new User();  
   addressForm = this.fb.group({
     id: this.user.id,
     firstName: [this.user.firstName, Validators.required],
     email: [this.user.email, [Validators.required, Validators.email]],
     phone: [this.user.phone, Validators.required],
+    cpf: [this.user.cpf, [Validators.required, GenericValidator.isValidCpf()]],
     password: [this.user.password, Validators.required],
   });
 
@@ -32,12 +35,11 @@ export class CadastroComponent {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  constructor(private fb: FormBuilder, private autorizacaoService:AutorizacaoService) {}
+  constructor(private fb: FormBuilder,  private service: UserService) {}
 
 
 
   onSubmit(): void {
-    this.user.id = '1';
     if(this.addressForm.controls['firstName'].value)
       this.user.firstName= this.addressForm.controls['firstName'].value;
     if(this.addressForm.controls['email'].value)
@@ -46,10 +48,40 @@ export class CadastroComponent {
       this.user.phone = this.addressForm.controls['phone'].value;  
     if(this.addressForm.controls['password'].value)
       this.user.password = this.addressForm.controls['password'].value;
+    if(this.addressForm.controls['cpf'].value)
+      this.user.cpf = this.addressForm.controls['cpf'].value;  
       
-    alert('Você cadastrou');
+
     console.log(this.user);
     localStorage.setItem('user', JSON.stringify(this.user));
+
+    this.service.addUser(this.user).pipe(
+      tap((retorno: User) => {
+        alert('Você cadastrou')
+        console.log(retorno)
+      }
+      ),
+      catchError(() => {
+ 
+          alert('Ocorreu um erro');
+          return EMPTY
+        }
+      )
+    ).subscribe(
+      {
+        next: (response) => {
+          console.log('entrou no response')
+          console.log(response)
+          //this.router.navigate(['animals'])
+          //window.location.href = 'http://localhost/urban-agros/croper/index.html';
+        },
+        error: (erro: any) => {
+          console.log('entrou no erro')
+          alert("Usuário ou Senha inválido(s)!");
+          console.log(erro)
+        }
+      }
+    )
 
   }
 }

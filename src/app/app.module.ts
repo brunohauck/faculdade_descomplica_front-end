@@ -31,7 +31,7 @@ import { DetalheComponent } from './pages/detalhe/detalhe.component';
 import { ParametroComponent } from './pages/parametro/parametro.component';
 import { ListaSimplesComponent } from './pages/lista-simples/lista-simples.component';
 import { EditarComponent } from './pages/editar/editar.component';
-
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -66,7 +66,10 @@ import { EditarComponent } from './pages/editar/editar.component';
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    NgxMaskModule.forRoot({
+			validation: true,
+		}),
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

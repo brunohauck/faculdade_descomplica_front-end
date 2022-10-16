@@ -16,10 +16,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   /**  POST  user api  ADD User Function  */
-  addUser(user: any): Observable<User> {
+  addUser(user: User): Observable<User> {
     console.log(user);
     
-    var url: string = this.BASE_URL + 'api/v1/farmer';
+    var url: string = this.BASE_URL + 'users';
+    console.log(url)
     return this.http.post<User>(url, user, httpOptions);
 
   }

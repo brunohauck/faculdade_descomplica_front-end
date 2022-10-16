@@ -3,6 +3,7 @@ export class User {
     public firstName: string = '';
     public email: string = '';
     public phone: string = '';
+    public cpf: string = '';
     public password: string = '';
     
 }
