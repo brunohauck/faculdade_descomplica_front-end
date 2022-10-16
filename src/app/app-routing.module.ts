@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListarComponent } from './pages/listar/listar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ManipulandoJsonComponent } from './pages/manipulando-json/manipulando-json.component';
+import { ModalComponent } from './pages/modal/modal.component';
 import { ParametroComponent } from './pages/parametro/parametro.component';
 import { PrivadoComponent } from './pages/privado/privado.component';
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'detalhe/:id', component: DetalheComponent},
   { path: 'json', component: ManipulandoJsonComponent},
   { path: 'parametro', component: ParametroComponent},
+  { path: 'modal', component: ModalComponent},
   {
     path: 'privado',
     component: PrivadoComponent,

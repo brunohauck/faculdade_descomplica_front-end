@@ -32,6 +32,15 @@ import { ParametroComponent } from './pages/parametro/parametro.component';
 import { ListaSimplesComponent } from './pages/lista-simples/lista-simples.component';
 import { EditarComponent } from './pages/editar/editar.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DialogContentExampleDialog, ModalComponent } from './pages/modal/modal.component';
+
+// *************** POPUPS & MODALS ***************
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -45,8 +54,10 @@ import { NgxMaskModule } from 'ngx-mask';
     PrivadoComponent,
     DetalheComponent,
     ParametroComponent,
+    DialogContentExampleDialog,
     ListaSimplesComponent,
-    EditarComponent
+    EditarComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -57,12 +68,18 @@ import { NgxMaskModule } from 'ngx-mask';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatBottomSheetModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatTooltipModule,
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
