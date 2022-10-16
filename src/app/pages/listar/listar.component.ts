@@ -2,7 +2,9 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { ListarDataSource, ListarItem } from './listar-datasource';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
+import { ListarDataSource } from './listar-datasource';
 
 @Component({
   selector: 'app-listar',
@@ -12,15 +14,18 @@ import { ListarDataSource, ListarItem } from './listar-datasource';
 export class ListarComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<ListarItem>;
+  @ViewChild(MatTable) table!: MatTable<User>;
   dataSource: ListarDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'firstName', 'email', 'phone', 'cpf', 'password'];
 
-  constructor() {
-    this.dataSource = new ListarDataSource();
+  constructor(public service: UserService) {
+    this.dataSource = new ListarDataSource(this.service);
+    console.log('contrutor')
+    console.log(this.dataSource)
   }
+  
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
