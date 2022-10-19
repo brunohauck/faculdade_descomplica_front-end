@@ -12,12 +12,9 @@ interface Student {
   styleUrls: ['./manipulando-json.component.css']
 })
 export class ManipulandoJsonComponent implements OnInit {
-
   students: Student[] = studentsData;  
   constructor() { }
-
   ngOnInit(): void {
     console.log(this.students)
   }
-
 }
