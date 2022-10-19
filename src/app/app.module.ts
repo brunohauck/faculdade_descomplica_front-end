@@ -30,6 +30,9 @@ import { PrivadoComponent } from './pages/privado/privado.component';
 import { DetalheComponent } from './pages/detalhe/detalhe.component';
 import { ParametroComponent } from './pages/parametro/parametro.component';
 import { ListaSimplesComponent } from './pages/lista-simples/lista-simples.component';
+import { SubrouteComponent } from './pages/subroute/subroute.component';
+import { Page1Component } from './pages/subroute/page1/page1.component';
+import { Page2Component } from './pages/subroute/page2/page2.component';
 
 
 @NgModule({
@@ -44,7 +47,10 @@ import { ListaSimplesComponent } from './pages/lista-simples/lista-simples.compo
     PrivadoComponent,
     DetalheComponent,
     ParametroComponent,
-    ListaSimplesComponent
+    ListaSimplesComponent,
+    SubrouteComponent,
+    Page1Component,
+    Page2Component
   ],
   imports: [
     BrowserModule,
