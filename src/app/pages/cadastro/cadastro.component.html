@@ -53,13 +53,12 @@
             <mat-error *ngIf="addressForm.controls['cpf'].getError('cpfNotValid')">
               CPF não é <strong>Valido</strong>
             </mat-error>
-
           </mat-form-field>
         </div>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" [disabled]="!addressForm.valid"  type="submit">Login</button>
+      <button mat-raised-button color="primary" [disabled]="!addressForm.valid"  type="submit">Cadastrar</button>
     </mat-card-actions>
   </mat-card>
 </form>
