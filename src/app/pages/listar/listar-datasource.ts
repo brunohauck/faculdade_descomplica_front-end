@@ -6,31 +6,18 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
-
-
-
-/**
- * Data source for the Listar view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
 export class ListarDataSource extends DataSource<User> {
   data: User[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
-
   constructor(public service:UserService) {
     super();
-    this.getUsers();
-    
+    this.getUsers(); 
   }
-
-  getUsers(): void {
-    this.service.getUsers().subscribe(
+  async getUsers(): Promise<void> {
+    await this.service.getUsers().subscribe(
       {
         next: (response) => {
-   
-          
           this.data = response;
           console.log(this.data)
         },
@@ -94,6 +81,8 @@ export class ListarDataSource extends DataSource<User> {
       switch (this.sort?.active) {
         case 'firstName': return compare(a.firstName, b.firstName, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'cpf': return compare(+a.cpf, +b.cpf, isAsc);
+        case 'phone': return compare(+a.phone, +b.phone, isAsc);
         default: return 0;
       }
     });

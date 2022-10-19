@@ -11,7 +11,6 @@ export class ModalComponent  {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogContentExampleDialog);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });

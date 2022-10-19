@@ -18,7 +18,7 @@ export class ListarComponent implements AfterViewInit {
   dataSource: ListarDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'firstName', 'email', 'phone', 'cpf', 'password'];
+  displayedColumns = ['id', 'firstName', 'email', 'phone', 'cpf'];
 
   constructor(public service: UserService) {
     this.dataSource = new ListarDataSource(this.service);
@@ -28,8 +28,11 @@ export class ListarComponent implements AfterViewInit {
   
 
   ngAfterViewInit(): void {
+    console.log(this.dataSource.sort)
+    console.log(this.sort)
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    console.log(this.dataSource);
     this.table.dataSource = this.dataSource;
   }
 
