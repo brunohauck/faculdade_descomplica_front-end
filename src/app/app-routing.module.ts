@@ -30,10 +30,7 @@ const routes: Routes = [
     component: PrivadoComponent,
     canActivate: [AutorizadoGuard]
   },
-  {
-    path: '**',
-    redirectTo: 'home'
-  }
+  { path: 'lazzy', loadChildren: () => import('./pages/lazzy/lazzy.module').then(m => m.LazzyModule) }
 ];
 
 @NgModule({

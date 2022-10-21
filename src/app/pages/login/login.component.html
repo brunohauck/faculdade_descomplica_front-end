@@ -1,4 +1,4 @@
-<form [formGroup]="addressForm"  (ngSubmit)="onSubmit()">
+<form [formGroup]="addressForm"  (ngSubmit)="onSubmit()" novalidate>
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>Shipping Information</mat-card-title>
@@ -10,7 +10,7 @@
           
          <mat-form-field appearance="fill">
             <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+            <input matInput placeholder="pat@example.com" formControlName="email" required>
             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         </div>
@@ -27,7 +27,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" [disabled]="!addressForm.valid"  type="submit">Login</button>
+      <button mat-raised-button color="primary" [disabled]="addressForm.valid"  type="submit">Login</button>
     </mat-card-actions>
   </mat-card>
 </form>

@@ -9,8 +9,9 @@ export class AutorizacaoService {
 
   constructor() { }
 
-  autorizar(){
+  autorizar(token: string){
     localStorage.setItem("login", "sim");
+    localStorage.setItem("token", token)
   }
 
   deslogar(){

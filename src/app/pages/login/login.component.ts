@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { AutorizacaoService } from 'src/app/services/autorizacao.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -21,20 +22,34 @@ export class LoginComponent {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  constructor(private fb: FormBuilder, private autorizacaoService:AutorizacaoService) {}
+  constructor(
+    private fb: FormBuilder,
+    private service: UserService,
+    private autorizacaoService: AutorizacaoService) { }
 
-  obterDescricaoLogin = () => 
-  this.autorizacaoService.obterLoginStatus() ? "Estou Autorizado" : "Nao Estou Autorizado";
+  obterDescricaoLogin = () =>
+    this.autorizacaoService.obterLoginStatus() ? "Estou Autorizado" : "Nao Estou Autorizado";
 
-  loginClick() {
-    if (this.autorizacaoService.obterLoginStatus())
-      this.autorizacaoService.deslogar();
-    else
-      this.autorizacaoService.autorizar();
-  }
+
 
   onSubmit(): void {
-    this.loginClick();
-    alert('Você cadastrou');
+    if (this.autorizacaoService.obterLoginStatus())
+      this.autorizacaoService.deslogar();
+    else {
+      this.service.login(this.addressForm.value).subscribe(
+        {
+          next: (response) => {
+            console.log(response.token)
+            if(response.token)
+            this.autorizacaoService.autorizar(response.token);
+          },
+          error: (erro: any) => {
+            console.log('entrou no erro')
+            alert("Usuário ou Senha inválido(s)!");
+            console.log(erro)
+          }
+        }
+      )
+    }
   }
 }
