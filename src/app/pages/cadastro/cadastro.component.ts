@@ -54,7 +54,7 @@ export class CadastroComponent {
 
     console.log(this.user);
     localStorage.setItem('user', JSON.stringify(this.user));
-
+//json-server --watch db.json
     this.service.addUser(this.user).pipe(
       tap((retorno: User) => {
         alert('Você cadastrou')
@@ -70,10 +70,7 @@ export class CadastroComponent {
     ).subscribe(
       {
         next: (response) => {
-          console.log('entrou no response')
           console.log(response)
-          //this.router.navigate(['animals'])
-          //window.location.href = 'http://localhost/urban-agros/croper/index.html';
         },
         error: (erro: any) => {
           console.log('entrou no erro')
