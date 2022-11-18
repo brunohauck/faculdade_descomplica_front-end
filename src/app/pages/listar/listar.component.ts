@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { ListarDataSource } from './listar-datasource';
@@ -11,37 +11,68 @@ import { ListarDataSource } from './listar-datasource';
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css']
 })
-export class ListarComponent implements AfterViewInit {
+export class ListarComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<User>;
-  dataSource: ListarDataSource;
+  @ViewChild(MatTable, { static: false }) table!: MatTable<User>;
+  dataSource = new MatTableDataSource <User> ([]);
+
+  ngOnInit() {
+    this.getUsers()
+  }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'firstName', 'email', 'phone', 'cpf'];
 
   constructor(public service: UserService) {
-    this.dataSource = new ListarDataSource(this.service);
-    console.log('contrutor')
-    console.log(this.dataSource)
+    //this.dataSource = new ListarDataSource(this.service);
+    //console.log('contrutor')
+    //console.log(this.dataSource)
+   
   }
-  
 
-  ngAfterViewInit(): void {
-    console.log(this.dataSource.sort)
-    console.log(this.sort)
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource);
+  getUsers(): void {
+    this.service.getUsers().subscribe(
+      {
+        next: (response) => {
+          this.dataSource = new MatTableDataSource <User> (response);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+          
+
+        },
+        error: (erro: any) => {
+          console.log('entrou no erro')
+          alert("Ocorreu um erro ao listar os usuários! Tente mais tarde.");
+          console.log(erro)
+        }
+      }
+    )
+  }
+
+ 
+
+  ngAfterViewInit() {
     this.table.dataSource = this.dataSource;
   }
 
-  /*
-      let data = { longtitue: 1, name: 'hien'};
-    //this.router.navigate( ['authenticate'], { queryParams: { jwt: JSON.stringify(data)}});
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    this.router.navigate(['/chat-profile'], 
-        { queryParams: { profile: JSON.stringify(data) }});
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  /*
+      this.router.navigate( ['authenticate'], { queryParams: { jwt: JSON.stringify(data)}});
+    let data = { longtitue: 1, name: 'hien'};
+    user: User = new User('Bruno', 'brunohauck@gmail.com')
+
+
+    this.router.navigate(['/user-detail'], 
+        { queryParams: { user: JSON.stringify(data) }});
 
     
     ngOnInit() {

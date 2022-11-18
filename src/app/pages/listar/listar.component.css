@@ -1,3 +1,13 @@
-.full-width-table {
+table {
   width: 100%;
+  margin: 30px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
 }

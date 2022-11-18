@@ -41,6 +41,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     DialogContentExampleDialog,
     ListaSimplesComponent,
     EditarComponent,
-    ModalComponent
+    ModalComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
