@@ -42,6 +42,8 @@ export class ListarComponent implements AfterViewInit, OnInit {
           this.dataSource.paginator = this.paginator;
           
 
+
+          
         },
         error: (erro: any) => {
           console.log('entrou no erro')
