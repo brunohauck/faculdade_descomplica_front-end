@@ -55,6 +55,7 @@ export class CadastroComponent {
     console.log(this.user);
     localStorage.setItem('user', JSON.stringify(this.user));
 
+
     this.service.addUser(this.user).subscribe(
       {
         next: (response) => {

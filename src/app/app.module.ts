@@ -30,8 +30,23 @@ import { PrivadoComponent } from './pages/privado/privado.component';
 import { DetalheComponent } from './pages/detalhe/detalhe.component';
 import { ParametroComponent } from './pages/parametro/parametro.component';
 import { ListaSimplesComponent } from './pages/lista-simples/lista-simples.component';
+
+import { SubrouteComponent } from './pages/subroute/subroute.component';
+import { Page1Component } from './pages/subroute/page1/page1.component';
+import { Page2Component } from './pages/subroute/page2/page2.component';
+
 import { EditarComponent } from './pages/editar/editar.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DialogContentExampleDialog, ModalComponent } from './pages/modal/modal.component';
+
+
+// *************** POPUPS & MODALS ***************
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -45,8 +60,13 @@ import { NgxMaskModule } from 'ngx-mask';
     PrivadoComponent,
     DetalheComponent,
     ParametroComponent,
+    SubrouteComponent,
+    Page1Component,
+    Page2Component,
+    DialogContentExampleDialog,
     ListaSimplesComponent,
-    EditarComponent
+    EditarComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -57,12 +77,18 @@ import { NgxMaskModule } from 'ngx-mask';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatBottomSheetModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatTooltipModule,
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
