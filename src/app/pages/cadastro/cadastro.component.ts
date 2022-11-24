@@ -54,27 +54,17 @@ export class CadastroComponent {
 
     console.log(this.user);
     localStorage.setItem('user', JSON.stringify(this.user));
-//json-server --watch db.json
-    this.service.addUser(this.user).pipe(
-      tap((retorno: User) => {
-        alert('Você cadastrou')
-        console.log(retorno)
-      }
-      ),
-      catchError(() => {
- 
-          alert('Ocorreu um erro');
-          return EMPTY
-        }
-      )
-    ).subscribe(
+
+
+    this.service.addUser(this.user).subscribe(
       {
         next: (response) => {
           console.log(response)
+          alert("Usuário cadastrado.");
         },
         error: (erro: any) => {
           console.log('entrou no erro')
-          alert("Usuário ou Senha inválido(s)!");
+          alert("Ocorreu um erro.");
           console.log(erro)
         }
       }
