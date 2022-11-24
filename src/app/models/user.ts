@@ -1,6 +1,9 @@
 export class User {
     public id: string = '';
-    public nome: string = '';
-    public telefone: string = '';
+    public firstName: string = '';
     public email: string = '';
+    public phone: string = '';
+    public cpf: string = '';
+    public password: string = '';
+    
 }
