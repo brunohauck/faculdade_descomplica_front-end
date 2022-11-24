@@ -11,6 +11,9 @@ import { ManipulandoJsonComponent } from './pages/manipulando-json/manipulando-j
 import { ModalComponent } from './pages/modal/modal.component';
 import { ParametroComponent } from './pages/parametro/parametro.component';
 import { PrivadoComponent } from './pages/privado/privado.component';
+import { Page1Component } from './pages/subroute/page1/page1.component';
+import { Page2Component } from './pages/subroute/page2/page2.component';
+import { SubrouteComponent } from './pages/subroute/subroute.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +26,14 @@ const routes: Routes = [
   { path: 'json', component: ManipulandoJsonComponent},
   { path: 'parametro', component: ParametroComponent},
   { path: 'modal', component: ModalComponent},
+  {
+    path: 'subroute',
+    component: SubrouteComponent,
+    children: [
+    { path: 'page1', component: Page1Component },
+    { path: 'page2', component: Page2Component },
+    ],
+  },
   {
     path: 'privado',
     component: PrivadoComponent,

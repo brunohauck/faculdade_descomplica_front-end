@@ -17,7 +17,6 @@ export class ManipulandoJsonComponent implements OnInit {
     console.log(this.students)
   }
   goToDetail(student: Student){
-
     this.router.navigate(['/detalhe', student.id]);
   }
 
