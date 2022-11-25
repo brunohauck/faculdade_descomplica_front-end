@@ -27,7 +27,7 @@ export class UserService {
 
   /**  PUT user api EDIT User Function  */
   editUser(user: any): Observable<User> {
-    var url: string = this.BASE_URL + 'api/v1/user' + user.id;;
+    var url: string = this.BASE_URL + 'users' + user.id;;
     return this.http.put<User>(url, user, httpOptions);
 
   }

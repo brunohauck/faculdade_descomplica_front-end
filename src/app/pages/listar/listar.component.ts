@@ -16,34 +16,20 @@ export class ListarComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable, { static: false }) table!: MatTable<User>;
   dataSource = new MatTableDataSource <User> ([]);
-
+  constructor(public service: UserService) {
+  }
   ngOnInit() {
     this.getUsers()
   }
-
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'firstName', 'email', 'phone', 'cpf'];
-
-  constructor(public service: UserService) {
-    //this.dataSource = new ListarDataSource(this.service);
-    //console.log('contrutor')
-    //console.log(this.dataSource)
-   
-
-    //fdsfds
-  }
-
   getUsers(): void {
     this.service.getUsers().subscribe(
       {
         next: (response) => {
           this.dataSource = new MatTableDataSource <User> (response);
           this.dataSource.sort = this.sort;
-          this.dataSource.paginator = this.paginator;
-          
-
-
-          
+          this.dataSource.paginator = this.paginator;      
         },
         error: (erro: any) => {
           console.log('entrou no erro')
@@ -54,8 +40,6 @@ export class ListarComponent implements AfterViewInit, OnInit {
     )
   }
 
- 
-
   ngAfterViewInit() {
     this.table.dataSource = this.dataSource;
   }
@@ -63,31 +47,8 @@ export class ListarComponent implements AfterViewInit, OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
-
-  /*
-      this.router.navigate( ['authenticate'], { queryParams: { jwt: JSON.stringify(data)}});
-    let data = { longtitue: 1, name: 'hien'};
-    user: User = new User('Bruno', 'brunohauck@gmail.com')
-
-
-    this.router.navigate(['/user-detail'], 
-        { queryParams: { user: JSON.stringify(data) }});
-
-    
-    ngOnInit() {
-    this.route.queryParams.subscribe(
-      params => {
-        console.log('Got param: ', params['profile']);
-        this.profile =  params['profile'];
-        let data = JSON.parse(this.profile);
-        console.log(data.name);
-      }
-    )
-  }    
-  */
 }
