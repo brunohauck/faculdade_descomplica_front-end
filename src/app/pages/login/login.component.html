@@ -10,8 +10,11 @@
           
          <mat-form-field appearance="fill">
             <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" formControlName="email" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            <input matInput placeholder="pat@example.com" name="email" formControlName="email" >
+            
+            <mat-error *ngIf="addressForm.controls['email'].hasError('required')" required>
+              Email é <strong>obrigatório</strong>!
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -19,7 +22,7 @@
         <div class="col">
           <mat-form-field class="fill">
             <input matInput placeholder="Senha" formControlName="password">
-            <mat-error *ngIf="addressForm.controls['password'].hasError('required')" required>
+            <mat-error *ngIf="addressForm.controls['password'].hasError('required')" >
               Senha é <strong>obrigatório</strong>!
             </mat-error>
           </mat-form-field>
@@ -27,7 +30,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" [disabled]="addressForm.valid"  type="submit">Login</button>
+      <button mat-raised-button color="primary" [disabled]="!addressForm.valid"  type="submit">Login</button>
     </mat-card-actions>
   </mat-card>
 </form>

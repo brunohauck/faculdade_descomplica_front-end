@@ -1,10 +1,11 @@
 export class UserAuth {
-    public token: string = '';
-    public user: User = new User;
-}
-export class User{
-    public _id: string = '';
-    public name: string = '';
-    public email: string = '';
-    public dataCriacao: string = '';
-}
+    kind: string = '';
+    localId: string = '';
+    email: string = '';
+    displayName: string = '';
+    idToken: string = '';
+    registered: boolean = true;
+    refreshToken: string = '';
+    expiresIn: string = '';
+  }
+  

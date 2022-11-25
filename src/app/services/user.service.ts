@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user';
 import { UserAuth } from '../models/userAuth';
+import { UserReturn } from '../models/userReturn';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -26,7 +27,7 @@ export class UserService {
 
   login(data: any): Observable<UserAuth> {
     console.log(data);
-    var url: string = 'https://api.startdev.net/usuario/autenticate';
+    var url: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDThl5AbjP3GU4XvtdpBn5ZvVUFVXMJMSA';
     console.log(url)
     return this.http.post<UserAuth>(url, data, httpOptions);
   }
@@ -37,20 +38,15 @@ export class UserService {
     return this.http.put<User>(url, user, httpOptions);
   }
 
-  getUserById(id: string): Observable<User[]> {
-    const httpOptionsToken = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'x-access-token': localStorage.getItem('token') || ''
-      })
-    };
-    var url: string = 'https://api.startdev.net/users/' + id;
-    return this.http.get<User[]>(url, httpOptionsToken).pipe(
-      tap((retorno: User[]) => {
+  getUserById(id: string): Observable<UserReturn> {
+    let data = {idToken: localStorage.getItem('token') || ''}
+    var url: string = 'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDThl5AbjP3GU4XvtdpBn5ZvVUFVXMJMSA';
+    return this.http.post<UserReturn>(url, data, httpOptions).pipe(
+      tap((retorno: UserReturn) => {
         console.log(retorno)
       }
       ),
-      catchError(this.handleError<User[]>('erro ao listar eventos'))
+      catchError(this.handleError<UserReturn>('erro ao listar eventos'))
     )
   }
 
