@@ -9,7 +9,7 @@
           <mat-form-field class="fill">
             <input matInput placeholder="Nome" formControlName="firstName">
             <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
-              First name is <strong>required</strong>
+              O nome é  <strong>obrigatório</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -65,10 +65,12 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+
       </div>
     </div>
     </mat-card-content>
     <mat-card-actions>
+      <button mat-raised-button color="primary" [disabled]="!addressForm.valid"  type="submit">Login</button>
       <button mat-raised-button color="primary" [disabled]="!addressForm.valid"  type="submit">Cadastrar</button>
     </mat-card-actions>
   </mat-card>

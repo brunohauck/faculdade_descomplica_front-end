@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CadastroComponent {
 
 
+
   user: User = new User();  
   addressForm = this.fb.group({
     id: this.user.id,
@@ -22,6 +23,7 @@ export class CadastroComponent {
     phone: [this.user.phone, Validators.required],
     cpf: [this.user.cpf, [Validators.required, GenericValidator.isValidCpf()]],
     password: [this.user.password, Validators.required],
+
   });
 
   hasUnitNumber = false;
