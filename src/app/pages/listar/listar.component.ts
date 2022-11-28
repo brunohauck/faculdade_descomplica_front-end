@@ -27,4 +27,24 @@ export class ListarComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+
+  /*
+      let data = { longtitue: 1, name: 'hien'};
+    //this.router.navigate( ['authenticate'], { queryParams: { jwt: JSON.stringify(data)}});
+
+    this.router.navigate(['/chat-profile'], 
+        { queryParams: { profile: JSON.stringify(data) }});
+
+    
+    ngOnInit() {
+    this.route.queryParams.subscribe(
+      params => {
+        console.log('Got param: ', params['profile']);
+        this.profile =  params['profile'];
+        let data = JSON.parse(this.profile);
+        console.log(data.name);
+      }
+    )
+  }    
+  */
 }
