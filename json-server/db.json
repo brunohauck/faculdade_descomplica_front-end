@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Bruno Hauck",
+      "email": "brunohauck@gmail.com",
+      "phone": "1234567890",
+      "cpf": "0000",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "firstName": "Bruno",
+      "email": "brunohauck@gmail.com",
+      "phone": "323",
+      "cpf": "05126769685",
+      "password": "fdsfds"
+    },
+    {
+      "id": 3,
+      "firstName": "Pedro",
+      "email": "pedro@gmail.com",
+      "phone": "331313131",
+      "cpf": "05126769685",
+      "password": "q1w2e3r4"
+    }
+  ]
+}
