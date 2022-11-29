@@ -4,18 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AutorizacaoService {
-
   autorizado = false;
-
   constructor() { }
 
-  autorizar(){
+  autorizar(token: string){
     localStorage.setItem("login", "sim");
+    localStorage.setItem("token", token)
   }
-
   deslogar(){
     localStorage.clear();
   }
-
   obterLoginStatus = () => !!localStorage.getItem("login");
 }

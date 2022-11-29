@@ -1,8 +1,7 @@
 import { AbstractControl, Validators } from "@angular/forms";
 
 export class GenericValidator {
-    constructor() {}
- 
+    constructor() {} 
     /**
      * Valida se o CPF é valido. Deve-se ser informado o cpf sem máscara.
     */
