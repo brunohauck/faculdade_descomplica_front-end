@@ -47,7 +47,6 @@ export class UserService {
       ),
       catchError(this.handleError<UserReturn>('erro ao listar eventos'))
     )
-
   }
 
   /**  GET user api Gell All Custmoer Function  */

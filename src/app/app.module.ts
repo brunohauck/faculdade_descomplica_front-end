@@ -47,7 +47,9 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { TableComponent } from './components/table/table.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
+
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
     ListaSimplesComponent,
     EditarComponent,
     ModalComponent,
+    TableComponent,
     UserInfoComponent
+
   ],
   imports: [
     BrowserModule,
