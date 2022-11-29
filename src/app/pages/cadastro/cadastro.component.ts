@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CadastroComponent {
 
 
+
   user: User = new User();  
   addressForm = this.fb.group({
     id: this.user.id,
@@ -52,19 +53,18 @@ export class CadastroComponent {
     if(this.addressForm.controls['cpf'].value)
       this.user.cpf = this.addressForm.controls['cpf'].value;  
       
-
     console.log(this.user);
     localStorage.setItem('user', JSON.stringify(this.user));
-
     this.service.addUser(this.user).subscribe(
       {
         next: (response) => {
           console.log(response)
           alert("Usuário cadastrado com sucesso.");
+
         },
         error: (erro: any) => {
           console.log('entrou no erro')
-          alert("Usuário ou Senha inválido(s)!");
+          alert("Ocorreu um erro.");
           console.log(erro)
         }
       }

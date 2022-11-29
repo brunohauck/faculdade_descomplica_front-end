@@ -15,6 +15,14 @@
       "phone": "323",
       "cpf": "05126769685",
       "password": "fdsfds"
+    },
+    {
+      "id": 3,
+      "firstName": "Pedro",
+      "email": "pedro@gmail.com",
+      "phone": "331313131",
+      "cpf": "05126769685",
+      "password": "q1w2e3r4"
     }
   ]
 }
