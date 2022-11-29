@@ -23,7 +23,7 @@ export class CadastroComponent {
     phone: [this.user.phone, Validators.required],
     cpf: [this.user.cpf, [Validators.required, GenericValidator.isValidCpf()]],
     password: [this.user.password, Validators.required],
-
+    dataNascimento: [this.user.dataNascimento, Validators.required],
   });
 
   hasUnitNumber = false;
@@ -53,16 +53,14 @@ export class CadastroComponent {
     if(this.addressForm.controls['cpf'].value)
       this.user.cpf = this.addressForm.controls['cpf'].value;  
       
-
     console.log(this.user);
     localStorage.setItem('user', JSON.stringify(this.user));
-
-
     this.service.addUser(this.user).subscribe(
       {
         next: (response) => {
           console.log(response)
-          alert("Usuário cadastrado.");
+          alert("Usuário cadastrado com sucesso.");
+
         },
         error: (erro: any) => {
           console.log('entrou no erro')

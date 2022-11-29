@@ -16,9 +16,9 @@
       </div>
       <div class="row">
         <div class="col">
-         <mat-form-field >
+          <mat-form-field>
             <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" formControlName="email" >
+            <input matInput placeholder="pat@example.com" formControlName="email">
             <mat-error *ngIf="addressForm.controls['email'].hasError('required')">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         </div>
@@ -48,7 +48,7 @@
           <mat-form-field class="fill">
             <input matInput placeholder="CPF" mask="000.000.000-00" formControlName="cpf">
             <mat-error *ngIf="addressForm.controls['cpf'].hasError('required')">
-              CPF é  <strong>obrigatório</strong>
+              CPF é <strong>obrigatório</strong>
             </mat-error>
             <mat-error *ngIf="addressForm.controls['cpf'].getError('cpfNotValid')">
               CPF não é <strong>Valido</strong>
@@ -58,6 +58,7 @@
       </div>
       <div class="row">
         <div class="col">
+
       <mat-form-field appearance="fill">
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" >
@@ -66,11 +67,10 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
+
       </div>
-    </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" [disabled]="!addressForm.valid"  type="submit">Login</button>
       <button mat-raised-button color="primary" [disabled]="!addressForm.valid"  type="submit">Cadastrar</button>
     </mat-card-actions>
   </mat-card>

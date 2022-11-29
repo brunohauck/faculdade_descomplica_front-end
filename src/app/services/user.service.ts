@@ -29,7 +29,23 @@ export class UserService {
   /**  GET user api Gell All Custmoer Function  */
   getUsers(): Observable<User[]> {
     var url: string = this.BASE_URL + 'users';
-    return this.http.get<User[]>(url)
+    return this.http.get<User[]>(url).pipe(
+      tap((retorno: User[]) =>{
+        console.log('Listando usuários service')
+      }
+      ),
+      catchError(this.handleError<User[]>('erro ao listar eventos'))
+    )   
+  }
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console instead
+      this.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
+  private log(message: string) {
+     console.log(`EventoService: ${message}`);
   }
   /** DELETE: delete user Function*/
   deleteUser(user: User | string): Observable<User> {
