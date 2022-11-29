@@ -16,7 +16,6 @@ const httpOptions = {
 export class UserService {
   BASE_URL: string = 'http://localhost:3000/';
   constructor(private http: HttpClient) { }
-
   /**  POST  user api  ADD User Function  */
   addUser(user: User): Observable<User> {
     console.log(user);
@@ -30,11 +29,11 @@ export class UserService {
     var url: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDThl5AbjP3GU4XvtdpBn5ZvVUFVXMJMSA';
     console.log(url)
     return this.http.post<UserAuth>(url, data, httpOptions);
-  }
 
+  }
   /**  PUT user api EDIT User Function  */
   editUser(user: any): Observable<User> {
-    var url: string = this.BASE_URL + 'api/v1/user' + user.id;;
+    var url: string = this.BASE_URL + 'users/' + user.id;;
     return this.http.put<User>(url, user, httpOptions);
   }
 
@@ -48,6 +47,7 @@ export class UserService {
       ),
       catchError(this.handleError<UserReturn>('erro ao listar eventos'))
     )
+
   }
 
   /**  GET user api Gell All Custmoer Function  */
@@ -63,7 +63,9 @@ export class UserService {
 
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
+
+  private handleError<T> (operation = 'operation', result?: T) {
+
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
       this.log(`${operation} failed: ${error.message}`);
@@ -73,17 +75,10 @@ export class UserService {
   private log(message: string) {
     console.log(`EventoService: ${message}`);
   }
-
-
-
   /** DELETE: delete user Function*/
   deleteUser(user: User | string): Observable<User> {
     const id = typeof user === 'string' ? user : user.id;
-    var url: string = this.BASE_URL + 'api/v1/user' + id;
+    var url: string = this.BASE_URL + 'users/' + id;
     return this.http.delete<User>(url, httpOptions);
-
   }
-
-
-
 }
